@@ -1,0 +1,1 @@
+I developed a Python simulation of a manufacturing production line to investigate how factors such as bottlenecks, machine availability, cycle time, staffing, and defects affect production. I used Monte Carlo simulation to account for real-world variability and then compared different improvement strategies based on their impact on throughput and cost 
