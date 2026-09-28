@@ -6,9 +6,7 @@ def create_dashboard(
     scenario_data,
     simulation_results
 ):
-    """
-    Create a manufacturing engineering dashboard.
-    """
+
 
     fig, axes = plt.subplots(
         2,
@@ -16,9 +14,6 @@ def create_dashboard(
         figsize=(14, 9)
     )
 
-    # -----------------------------------------
-    # Production capacity
-    # -----------------------------------------
 
     axes[0, 0].bar(
         capacity_data["Station"],
@@ -44,9 +39,6 @@ def create_dashboard(
         alpha=0.3
     )
 
-    # -----------------------------------------
-    # Utilization
-    # -----------------------------------------
 
     axes[0, 1].bar(
         capacity_data["Station"],
@@ -72,9 +64,6 @@ def create_dashboard(
         alpha=0.3
     )
 
-    # -----------------------------------------
-    # Improvement scenarios
-    # -----------------------------------------
 
     scenario_names = [
         item["Scenario"]
@@ -110,9 +99,6 @@ def create_dashboard(
         alpha=0.3
     )
 
-    # -----------------------------------------
-    # Monte Carlo simulation
-    # -----------------------------------------
 
     axes[1, 1].hist(
         simulation_results,
