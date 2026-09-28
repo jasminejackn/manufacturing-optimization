@@ -2,70 +2,35 @@ import numpy as np
 
 
 def identify_bottleneck(capacity_data):
-    """
-    Identify the station with the lowest production capacity.
-    """
-
     index = capacity_data["Capacity"].idxmin()
-
     return capacity_data.loc[
         index,
         "Station"
     ]
-
-
+    
 def calculate_utilization(capacity_data):
-    """
-    Calculate workstation utilization.
-    """
-
     results = capacity_data.copy()
-
     line_capacity = results["Capacity"].min()
-
     results["Utilization"] = (
         line_capacity /
         results["Capacity"]
     )
-
     return results
 
-
 def calculate_yield(stations):
-    """
-    Calculate overall manufacturing yield.
-    """
-
     yields = (
         1 - stations["Defect_Rate"]
     )
-
     return np.prod(yields)
 
-
 def scenario_analysis(stations, calculate_capacity):
-    """
-    Compare different manufacturing improvement strategies.
-    """
-
     scenarios = []
-
-    # --------------------------------------------------------
-    # Current system
-    # --------------------------------------------------------
-
     current = stations.copy()
-
     result = calculate_capacity(current)
-
     scenarios.append({
         "Scenario": "Current System",
         "Throughput": result["Capacity"].min()
     })
-
-    # --------------------------------------------------------
-    # Add assembly operator
-    # --------------------------------------------------------
 
     assembly = stations.copy()
 
@@ -85,10 +50,6 @@ def scenario_analysis(stations, calculate_capacity):
         "Scenario": "Add Assembly Operator",
         "Throughput": result["Capacity"].min()
     })
-
-    # --------------------------------------------------------
-    # Improve drilling cycle time by 20%
-    # --------------------------------------------------------
 
     drilling = stations.copy()
 
@@ -114,10 +75,6 @@ def scenario_analysis(stations, calculate_capacity):
         "Throughput": result["Capacity"].min()
     })
 
-    # --------------------------------------------------------
-    # Improve assembly cycle time by 20%
-    # --------------------------------------------------------
-
     assembly_fast = stations.copy()
 
     assembly_fast["Cycle_Time_sec"] = (
@@ -142,10 +99,6 @@ def scenario_analysis(stations, calculate_capacity):
         "Throughput": result["Capacity"].min()
     })
 
-    # --------------------------------------------------------
-    # Improve equipment availability
-    # --------------------------------------------------------
-
     maintenance = stations.copy()
 
     maintenance["Availability"] = (
@@ -167,7 +120,6 @@ def scenario_analysis(stations, calculate_capacity):
     return scenarios
 
 
-
 def calculate_cost(
     throughput,
     operators=6,
@@ -175,9 +127,6 @@ def calculate_cost(
     material_cost_per_unit=12,
     defect_rate=0.03
 ):
-    """
-    Estimate manufacturing cost.
-    """
 
     labor_cost = (
         operators *
