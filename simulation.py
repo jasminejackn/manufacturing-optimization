@@ -7,14 +7,6 @@ SHIFT_MINUTES = SHIFT_HOURS * 60
 
 
 def create_production_line():
-    """
-    Creates the manufacturing production line.
-
-    Returns
-    -------
-    pandas.DataFrame
-        Production line configuration.
-    """
 
     return pd.DataFrame({
         "Station": [
@@ -60,9 +52,6 @@ def create_production_line():
 
 
 def calculate_capacity(stations):
-    """
-    Calculate the production capacity of each station.
-    """
 
     results = stations.copy()
 
@@ -88,22 +77,6 @@ def simulate_production(
     stations,
     simulations=1000
 ):
-    """
-    Perform Monte Carlo simulation of production output.
-
-    Parameters
-    ----------
-    stations : pandas.DataFrame
-        Production line configuration.
-
-    simulations : int
-        Number of simulated shifts.
-
-    Returns
-    -------
-    numpy.ndarray
-        Simulated production output.
-    """
 
     output_results = []
 
