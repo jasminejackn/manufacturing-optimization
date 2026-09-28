@@ -24,15 +24,7 @@ def main():
     print("       MANUFACTURING PROCESS OPTIMIZATION")
     print("=" * 65)
 
-    # -----------------------------------------
-    # Create production line
-    # -----------------------------------------
-
     stations = create_production_line()
-
-    # -----------------------------------------
-    # Calculate capacity
-    # -----------------------------------------
 
     capacity_data = calculate_capacity(
         stations
@@ -42,43 +34,24 @@ def main():
         capacity_data
     )
 
-    # -----------------------------------------
-    # Identify bottleneck
-    # -----------------------------------------
-
     bottleneck = identify_bottleneck(
         capacity_data
     )
 
-    # -----------------------------------------
-    # Calculate quality
-    # -----------------------------------------
-
     overall_yield = calculate_yield(
         stations
     )
-
-    # -----------------------------------------
-    # Monte Carlo simulation
-    # -----------------------------------------
 
     simulation_results = simulate_production(
         stations,
         simulations=1000
     )
 
-    # -----------------------------------------
-    # Improvement scenarios
-    # -----------------------------------------
-
     scenarios = scenario_analysis(
         stations,
         calculate_capacity
     )
 
-    # -----------------------------------------
-    # Display analysis
-    # -----------------------------------------
 
     print("\nPRODUCTION LINE")
 
@@ -120,9 +93,6 @@ def main():
         f"{__import__('numpy').percentile(simulation_results, 90):.1f}"
     )
 
-    # -----------------------------------------
-    # Improvement scenarios
-    # -----------------------------------------
 
     print("\nIMPROVEMENT SCENARIOS")
 
@@ -141,9 +111,6 @@ def main():
             f" ({improvement:+.1f}%)"
         )
 
-    # -----------------------------------------
-    # Cost analysis
-    # -----------------------------------------
 
     average_output = (
         simulation_results.mean()
@@ -175,18 +142,13 @@ def main():
         f"${costs['Cost Per Good Unit']:.2f}"
     )
 
-    # -----------------------------------------
-    # Save data
-    # -----------------------------------------
 
     capacity_data.to_csv(
         "results/station_analysis.csv",
         index=False
     )
 
-    # -----------------------------------------
-    # Dashboard
-    # -----------------------------------------
+
 
     create_dashboard(
         capacity_data,
